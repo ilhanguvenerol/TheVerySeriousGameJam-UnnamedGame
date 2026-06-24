@@ -13,7 +13,11 @@ namespace FeastGame.Systems
         [SerializeField] private TableSystem tableSystem;
 
         public List<Guest> ActiveGuests { get; private set; } = new List<Guest>();
+        private readonly Queue<Guest> waitingQueue = new Queue<Guest>();
+        public Guest CurrentGuest { get; private set; }
+        public int QueueLength => waitingQueue.Count + (CurrentGuest != null ? 1 : 0);
 
+        public event Action<Guest> OnGuestAwaitingPlacement;
 
         public event Action<Guest> OnGuestHasNoSeat;//instant lose condition
 
@@ -35,6 +39,14 @@ namespace FeastGame.Systems
             var guest = new Guest(race, currentTime + delay);
 
             ActiveGuests.Add(guest);
+            if (CurrentGuest == null)
+            {
+                PromoteNextGuest(guest);
+            }
+            else
+            {
+                waitingQueue.Enqueue(guest);
+            }
             return guest;
         }
 
@@ -50,22 +62,43 @@ namespace FeastGame.Systems
             return batch;
         }
 
-        public bool TrySeatGuest(Guest guest)
+        public bool CanSeatCurrentGuestAt(Table table)
         {
-            var table = tableSystem.FindAvailableTableFor(guest);
-            if (table == null)
-            {
-                OnGuestHasNoSeat?.Invoke(guest);
+            return CurrentGuest != null && tableSystem.CanSeatGuestAt(CurrentGuest, table);
+        }
+
+        public bool SeatCurrentGuest(Table table)
+        {
+            if (CurrentGuest == null)
                 return false;
+
+            if (!tableSystem.CanSeatGuestAt(CurrentGuest, table))
+                return false;
+
+            bool seated = tableSystem.SeatGuest(CurrentGuest, table);
+            if (seated)
+            {
+                var seatedGuest = CurrentGuest;
+                OnGuestSeated?.Invoke(seatedGuest);
+                PromoteNextGuest(waitingQueue.Count > 0 ? waitingQueue.Dequeue() : null);
             }
 
-            bool seated = tableSystem.SeatGuest(guest, table);
-            if (seated)
-                OnGuestSeated?.Invoke(guest);
-            else
-                OnGuestHasNoSeat?.Invoke(guest);
-
             return seated;
+        }
+
+        private void PromoteNextGuest(Guest next)
+        {
+            CurrentGuest = next;
+            if (CurrentGuest != null)
+                OnGuestAwaitingPlacement?.Invoke(CurrentGuest);
+        }
+
+        public void CheckForUnplacedGuests()
+        {
+            if (CurrentGuest != null)
+            {
+                OnGuestHasNoSeat?.Invoke(CurrentGuest);
+            }
         }
 
         //handle guest departures during in-between time
