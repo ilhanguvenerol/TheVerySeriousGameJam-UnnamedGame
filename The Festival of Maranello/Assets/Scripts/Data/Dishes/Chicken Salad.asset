@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6965138020aa12a40a34290cfa66b410, type: 3}
+  m_Name: Chicken Salad
+  m_EditorClassIdentifier: FeastGame.Gameplay::FeastGame.Data.DishData
+  dishName: Chicken Salad
+  course: 1
+  description: 
+  icon: {fileID: 0}
+  ingredients:
+  - {fileID: 11400000, guid: 63c841769a454c34c8ce9346f8eb90ee, type: 2}
+  - {fileID: 11400000, guid: 6075c490fac5109469ec368a2f568e7c, type: 2}
+  wheelWeight: 1

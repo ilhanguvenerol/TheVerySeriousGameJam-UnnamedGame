@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91edf6b1e4f0dce45a42a8f10905e7f5, type: 3}
+  m_Name: Table_ 4
+  m_EditorClassIdentifier: FeastGame.Gameplay::FeastGame.Data.TableData
+  tableName: 
+  wheelPool: {fileID: 11400000, guid: 4c3efba41eaab5741b9f653def089f02, type: 2}
+  totalUses: 6
+  seatCount: 6
