@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33d1d6d88f4e2564cbd7f7a23cc6c52f, type: 3}
+  m_Name: Vampire
+  m_EditorClassIdentifier: FeastGame.Gameplay::FeastGame.Data.RaceData
+  raceName: Vampire
+  description: 
+  portrait: {fileID: 0}
+  ingredientReactions:
+  - ingredient: {fileID: 11400000, guid: 5cc45c8105df6104d807a9b5d8a77789, type: 2}
+    reaction: 4
+    comfortDelta: 0
+  - ingredient: {fileID: 11400000, guid: 8f8ceb39cea5e2a42b72272bbcc053a6, type: 2}
+    reaction: 4
+    comfortDelta: 0
+  - ingredient: {fileID: 11400000, guid: 9c342fe217fd52c449911cfb27a45c8b, type: 2}
+    reaction: 2
+    comfortDelta: 0
+  - ingredient: {fileID: 11400000, guid: af21c0b1f60577541beea4d6c5dabe42, type: 2}
+    reaction: 1
+    comfortDelta: 0
+  - ingredient: {fileID: 11400000, guid: cd11094a690e2844591935f935fe0e8a, type: 2}
+    reaction: 3
+    comfortDelta: 0
